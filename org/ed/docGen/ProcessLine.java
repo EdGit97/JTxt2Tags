@@ -58,6 +58,7 @@ public class ProcessLine {
 		StringBuilder outputBuffer = new StringBuilder();
 		
 		status.setContinuation(true);
+		status.setOutLine("");
 		
 		do {
 			if (status.getMode() == null) {
@@ -66,7 +67,13 @@ public class ProcessLine {
 				
 			}
 
-			status.getMode().process(inLine, status);
+			if (status.getMode() == null) {
+				outputBuffer.append("");
+				status.setReprocess(false);
+			}
+			else { 
+				status.getMode().process(inLine, status);
+			}
 			
 			if (status.getReprocess()) {
 				outputBuffer.append(status.getOutLine());
