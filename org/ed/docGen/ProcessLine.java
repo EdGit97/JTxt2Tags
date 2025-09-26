@@ -103,6 +103,13 @@ public class ProcessLine {
 	}
 	
 	/**
+	 * Clear the current mode
+	 */
+	public void resetMode() {
+		status.setMode(null);
+	}
+	
+	/**
 	 * Getter
 	 * @return Current processing status
 	 */

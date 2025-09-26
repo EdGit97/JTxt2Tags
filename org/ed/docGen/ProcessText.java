@@ -35,17 +35,14 @@ import org.ed.docGen.targets.TagSubstitutes;
  * @version 1.0
  * @since 09-19-2025
  */
-public class ProcessText {
-	
-	/** The line processor to process an individual line */
-	protected ProcessLine lineProcessor;
+public class ProcessText extends ProcessLine {
 	
 	/**
 	 * Constructor
 	 * @param tags Target markup tag set
 	 */
 	public ProcessText(TagSubstitutes tags) {
-		lineProcessor = new ProcessLine(tags); 
+		super(tags); 
 	}
 	
 	/**
@@ -58,7 +55,7 @@ public class ProcessText {
 		StringBuilder output = new StringBuilder();
 		
 		for (String line : lines) {
-			String result = lineProcessor.process(line);
+			String result = super.process(line);
 			
 			output.append(result);
 			
@@ -68,7 +65,7 @@ public class ProcessText {
 			
 		}
 		
-		output.append(lineProcessor.closeDocument());
+		output.append(super.closeDocument());
 		
 		return output.toString();
 		

@@ -39,7 +39,17 @@ public enum Beautifiers {
 	 * Example:<br>
 	 * some text\
 	 */
-	SoftLineBreak("\\", Constants.newLine, "\\\\$"),
+	SoftLineBreak("\\", Constants.newLine, "\\\\$") {
+		
+		/*
+		 * @see org.ed.docGen.markup.Beautifiers#getStartTagEscaped()
+		 */
+		@Override
+		public String getStartTagEscaped() {
+			return "\\" + getStartTag();
+		}
+		
+	},
 
 	/** 
 	 * Render a section of a line as bold text. Bold
@@ -48,7 +58,7 @@ public enum Beautifiers {
 	 * Example:<br>
 	 * **some bold text**
 	 */
-	Bold("**", "\\*\\*([^\\s](|.*?[^\\s])\\**)\\*\\*"),
+	Bold("**", "(^|\\s)\\*\\*([^\\s](|.*?[^\\s])\\**)\\*\\*"),
 
 	/** 
 	 * Render a section of a line as italic text. Italic
@@ -57,7 +67,7 @@ public enum Beautifiers {
 	 * Example:<br>
 	 * //some italic text//
 	 */
-	Italic("//", "//([^\\s](|.*?[^\\s])/*)//"),
+	Italic("//", "(^|\\s)//([^\\s](|.*?[^\\s])/*)//"),
 
 	/** 
 	 * Render a section of a line as underlined text. Underlined
@@ -66,7 +76,7 @@ public enum Beautifiers {
 	 * Example:<br>
 	 * __some underlined text__
 	 */
-	Underline("__", "__([^\\s](|.*?[^\\s])_*)__"),
+	Underline("__", "(^|\\s)__([^\\s_](|.*?[^\\s_])_*)__"),
 
 	/** 
 	 * Render a section of a line as deleted text. Deleted
@@ -75,7 +85,7 @@ public enum Beautifiers {
 	 * Example:<br>
 	 * --some struck out text--
 	 */
-	Strike("--", "--([^\\s](|.*?[^\\s])-*)--"),
+	Strike("--", "(^|\\s)--([^\\s](|.*?[^\\s])-*)--"),
 
 	/** 
 	 * Render a section of a line as mono-spaced text. Mono-spaced
@@ -84,7 +94,7 @@ public enum Beautifiers {
 	 * Example:<br>
 	 * ``some monospaced text``
 	 */
-	Monospace("``", "``([^\\s](|.*?[^\\s])`*)``");
+	Monospace("``", "(^|\\s)``([^\\s](|.*?[^\\s])`*)``");
 
 	private static final String bracketRegex = "\\[.*\\]";
 	
@@ -150,6 +160,11 @@ public enum Beautifiers {
 				bracketEnd = bracketMatcher.end();
 			}
 			
+			// If the start of the match is a space, move to the next character
+			if (outLine.charAt(beautyStart) == ' ') {
+				beautyStart++;
+			}
+			
 			if (beautyStart > bracketStart && beautyEnd < bracketEnd) {
 				nextStartPos = bracketEnd + 1;
 			}
@@ -160,7 +175,7 @@ public enum Beautifiers {
 							  outLine.substring(beautyEnd);
 				}
 				
-				// Substitute the start tag
+				// Substitute the start tag.
 				outLine = outLine.substring(0, beautyStart) + targetStartTag +
 						  outLine.substring(beautyStart + this.getStartTag().length());
 				
@@ -199,6 +214,22 @@ public enum Beautifiers {
 	 */
 	public String getRegex() {
 		return regex;
+	}
+
+	/**
+	 * Getter
+	 * @return Token that begins a markup section with regular expression characters escaped 
+	 */
+	public String getStartTagEscaped() {
+		return startTag;
+	}
+	
+	/**
+	 * Getter
+	 * @return Token that ends a markup section with regular expression characters escaped 
+	 */
+	public String getEndTagEscaped() {
+		return startTag;
 	}
 	
 }

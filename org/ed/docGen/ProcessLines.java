@@ -40,17 +40,14 @@ import org.ed.docGen.targets.TagSubstitutes;
  * @version 1.0
  * @since 08-30-2025
  */
-public class ProcessLines {
-	
-	/** The line processor to process an individual line */
-	protected ProcessLine lineProcessor;
+public class ProcessLines extends ProcessLine {
 	
 	/**
 	 * Constructor
 	 * @param tags Target markup tag set
 	 */
 	public ProcessLines(TagSubstitutes tags) {
-		lineProcessor = new ProcessLine(tags); 
+		super(tags);
 	}
 	
 	/**
@@ -62,7 +59,7 @@ public class ProcessLines {
 		List<String> output = new ArrayList<>();
 		
 		for (String line : lines) {
-			output.add(lineProcessor.process(line));
+			output.add(super.process(line));
 		}
 		
 		return output;
