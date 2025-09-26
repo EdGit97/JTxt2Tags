@@ -85,3 +85,24 @@ TagSubstitutes ts = new ManTags();
 ProcessLines lp = new ProcessLines(ts);
 String [] output = lp.process(data);                   
 ```
+
+### Convert some text to HTML
+```
+import org.ed.docGen.ProcessLines;
+import org.ed.docGen.targets.TagSubstitutes;
+
+StringBuilder text = new StringBuilder();
+
+text.append("A line that will be a paragraph");
+text.append("\n");
+text.add("An ``unordered`` list");
+text.append("\n");
+text.add("- List line 1");
+text.append("\n");
+text.add("- List line 2");
+text.append("\n");
+
+TagSubstitutes ts = new org.ed.docGen.targets.HtmlTags();
+ProcessText pt = new ProcessText(ts);
+String result = pt.process(text);
+```
