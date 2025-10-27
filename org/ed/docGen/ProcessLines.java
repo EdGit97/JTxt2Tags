@@ -62,6 +62,8 @@ public class ProcessLines extends ProcessLine {
 			output.add(super.process(line));
 		}
 		
+		output.add(super.closeDocument());
+		
 		return output;
 		
 	}
