@@ -2,12 +2,12 @@
 The purpose of this project is to implement a subset of txt2tags markup, in Java, that will process individual lines and paragraphs, not a complete document.  The results can then be received by a calling program for further processing. The reason for using txt2tags is to allow users that are not 
 familiar with more robust markup languages to apply basic formatting to text that will later be included in other documents such as a web page.
 
-## Supported txt2tag Targets
+## Supported txt2tags Targets
 - HTML
 - UNIX Manual Page
 - Wiki
 
-## Supported txt2tag Syntax
+## Supported txt2tags Syntax
 Most txt2tags markup is supported.  Following a complete list of the 
 implemented markup.
 
