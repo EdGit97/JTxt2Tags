@@ -16,10 +16,13 @@
  */
 package org.ed.utilities;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+
 /**
  * Utility classes for modifying strings
  * @author Ed Swaneck
- * @version 1.0
+ * @version 1.01
  * @since 08-14-2025
  */
 public class StringUtils {
@@ -48,6 +51,26 @@ public class StringUtils {
 		}
 		
 		return ns;
+		
+	}
+	
+	/**
+	 * Determine if a string represents a valid URL
+	 * @param url The string to test
+	 * @return true if the input is a valid URL, otherwise false
+	 */
+	public static boolean isUrl(String url) {
+		boolean isUrl;
+		
+		try {
+			URI.create(url).toURL();
+			isUrl = true;
+		} 
+		catch (MalformedURLException | IllegalArgumentException e) {
+			isUrl = false;
+		}
+		
+		return isUrl;
 		
 	}
 

@@ -2,7 +2,7 @@
  * Text-to-Tags API for Java Projects
  * Copyright (C) 2025 Ed Swaneck
  * Copyright 2010-2019 Jendrik Seipp for regular expressions for Bold,
- * Italic, Underline, Strike and Monospace.
+ * Underline, Strike and Monospace.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,11 +63,13 @@ public enum Beautifiers {
 	/** 
 	 * Render a section of a line as italic text. Italic
 	 * text is delimited by two forward slashes immediately 
-	 * before and immediately after the text to be rendered italic.<br> 
+	 * before and immediately after the text to be rendered italic.
+	 * The regular expression will ignore http:// and https:// as the
+	 * end delimiter.<br> 
 	 * Example:<br>
 	 * //some italic text//
 	 */
-	Italic("//", "(^|\\s)//([^\\s](|.*?[^\\s])/*)//"),
+	Italic("//", "(^|\\s)//([^\\s](|.*?[^\\s])/*)(?<!http:|https:)//"),
 
 	/** 
 	 * Render a section of a line as underlined text. Underlined
@@ -143,7 +145,7 @@ public enum Beautifiers {
 	 */
 	public String beautify(String inLine, String targetStartTag, String targetEndTag) {
 		String outLine = String.valueOf(inLine);
-		Pattern beautyPattern = Pattern.compile(this.getRegex());
+		Pattern beautyPattern = Pattern.compile(this.getRegex(), Pattern.CASE_INSENSITIVE);
 		Matcher beautyMatcher = beautyPattern.matcher(outLine);
 		Pattern bracketPattern = Pattern.compile(bracketRegex);
 		Matcher bracketMatcher = bracketPattern.matcher(outLine);

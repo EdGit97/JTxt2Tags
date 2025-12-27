@@ -16,13 +16,12 @@
  */
 package org.ed.docGen.markup;
 
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.ed.docGen.Constants;
 import org.ed.docGen.targets.TagSubstitutes;
+import org.ed.utilities.StringUtils;
 
 /**
  * Types of link markup and associated search regular expressions
@@ -151,12 +150,17 @@ public enum LinkTypes {
 						                              Constants.TextAlign.left,
 						                              outLine.substring(startPos + 1, urlPos));
 				
-				String link = targetTags.getLinkTargets().itemTags(ild);
-				
-				// Substitute the target tag for the markup
-				outLine = outLine.substring(0, startPos) + link + outLine.substring(endPos);
-				
-				nextStartPos = startPos + link.length();
+				// Substitute the target tag for the markup if the link is valid URL
+				if (StringUtils.isUrl(ild.getFileSpec())) {
+					String link = targetTags.getLinkTargets().itemTags(ild);
+					
+					outLine = outLine.substring(0, startPos) + link + outLine.substring(endPos);
+					nextStartPos = startPos + link.length();
+					
+				}
+				else {
+					nextStartPos = endPos;
+				}
 				
 			}
 			
@@ -167,18 +171,19 @@ public enum LinkTypes {
 		// Process bare links
 		String [] lineParts = outLine.split(" ");
 		
-		for (String part : lineParts) {
-			boolean isUrl;
+		// If the last part ends in a dot, assume a period and remove the period
+		if (lineParts.length > 0) {
+			int lastPos = lineParts.length - 1;
+			String lastPart = lineParts[lastPos];
 			
-			try {
-				URI.create(part).toURL();
-				isUrl = true;
-			} 
-			catch (MalformedURLException | IllegalArgumentException e) {
-				isUrl = false;
+			if (lastPart.endsWith(".")) {
+				lineParts[lastPos] = lastPart.substring(0, lastPart.length() - 1);
 			}
 			
-			if (isUrl) {
+		}
+		
+		for (String part : lineParts) {
+			if (StringUtils.isUrl(part)) {
 				ImageLinkData ild = new ImageLinkData(part, Constants.TextAlign.left);
 				String link = targetTags.getLinkTargets().itemTags(ild).trim();
 				int linkPos = outLine.indexOf(part);
