@@ -38,41 +38,47 @@
  *     <li>Wiki</li>
  * </ul>
  * <h2>Supported txt2tag Syntax</h2>
+ * <div style='float: left;'>
+ *     <ul>
+ *         <li>{@link org.ed.docGen.markup.Beautifiers#Bold Bold}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#BoldSeparator BoldSeparator}</li>
+ *         <li>{@link org.ed.docGen.markup.Beautifiers#Italic Italic}</li>
+ *         <li>{@link org.ed.docGen.markup.Beautifiers#Monospace Monospace}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#DefinitionList Definition List}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#NumberedTitleLevel1 Numbered Title Level 1}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#NumberedTitleLevel2 Numbered Title Level 2}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#NumberedTitleLevel3 Numbered Title Level 3}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#OrderedList Ordered List}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#Paragraph Paragraph}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#QuotedParagraph Quoted Paragraph}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#RawArea Raw Area}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#Separator Separator}</li>
+ *         <li>{@link org.ed.docGen.markup.Beautifiers#SoftLineBreak Soft line-break}</li>
+ *     </ul>
+ * </div>
+ * <div style='float: left; margin-left: 10em;'>
+ *     <ul>
+ *         <li>{@link org.ed.docGen.markup.Beautifiers#Strike Strike-out}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#Table Table}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#TableHeader Table Header}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#TaggedArea Tagged Area}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#TitleLevel1 Title Level 1}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#TitleLevel2 Title Level 2}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#TitleLevel3 Title Level 3}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#ToDo To-Do Line}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#ToDoBlock To-Do Block}</li>
+ *         <li>{@link org.ed.docGen.markup.Beautifiers#Underline Underline}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#UnorderedList Unordered List}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#VerbatimArea Verbatim Area}</li>
+ *         <li>{@link org.ed.docGen.markup.Markup#VerbatimLine Verbatim Line}</li>
+ *     </ul>
+ * </div>
+ * <p style='clear: left;'>See also:</p>
  * <ul>
- *     <li>{@link org.ed.docGen.markup.Beautifiers#Bold Bold}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#BoldSeparator BoldSeparator}</li>
- *     <li>{@link org.ed.docGen.markup.Beautifiers#Italic Italic}</li>
- *     <li>{@link org.ed.docGen.markup.Beautifiers#Monospace Monospace}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#DefinitionList Definition List}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#NumberedTitleLevel1 Numbered Title Level 1}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#NumberedTitleLevel2 Numbered Title Level 2}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#NumberedTitleLevel3 Numbered Title Level 3}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#OrderedList Ordered List}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#Paragraph Paragraph}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#QuotedParagraph Quoted Paragraph}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#RawArea Raw Area}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#Separator Separator}</li>
- *     <li>{@link org.ed.docGen.markup.Beautifiers#SoftLineBreak Soft line-break}</li>
- *     <li>{@link org.ed.docGen.markup.Beautifiers#Strike Strike-out}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#Table Table}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#TableHeader Table Header}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#TaggedArea Tagged Area}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#TitleLevel1 Title Level 1}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#TitleLevel2 Title Level 2}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#TitleLevel3 Title Level 3}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#ToDo To-Do Line}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#ToDoBlock To-Do Block}</li>
- *     <li>{@link org.ed.docGen.markup.Beautifiers#Underline Underline}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#UnorderedList Unordered List}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#VerbatimArea Verbatim Area}</li>
- *     <li>{@link org.ed.docGen.markup.Markup#VerbatimLine Verbatim Line}</li>
- * </ul>
- * <p>See also:</p>
- * <ul>
+ *     <li><a href='https://github.com/EdGit97/JTxt2Tags' target='_blank'>JTxt2Tags Github</a></li>
  *     <li><a href='https://txt2tags.org/markup.html' target='_blank'>txt2tags - Markup Demo</a></li>
  *     <li><a href='https://en.wikipedia.org/wiki/Txt2tags' target='_blank'>Wikipedia - txt2tags</a></li>
  * </ul>
- * 
  */
 module docGen {
 	exports org.ed.docGen;
